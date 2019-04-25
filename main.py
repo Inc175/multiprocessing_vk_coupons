@@ -28,9 +28,8 @@ class VKbot:
     
         # upper-left corner coordinates
         offset = ((500 - 250), (500 - 250))
-        # pasting
+        # paste qrcode image
         background.paste(img, offset)
-
         background.save(coupon_path)
         return coupon_path   
      
