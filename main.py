@@ -65,7 +65,7 @@ class VKbot:
                 'photo{}_{}'.format(photo[0]['owner_id'], photo[0]['id'])
             )
 
-            # sending massage with attachment
+            # sending message with attachment
             vk.messages.send(
                 user_id='user_id',
                 attachment=','.join(attachments),
