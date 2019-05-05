@@ -79,15 +79,21 @@ class VKbot:
 if __name__ == "__main__":
     vk_bot = VKbot()
 
-    # run 2 processes for coupons generation
-    for i in range(2):
-        prc = Process(target=vk_bot.generate_coupons)
-        prc.start()
+    procs = []
 
+    # run 2 processes for coupons generation
+    for i in range(3):
+        prc = Process(target=vk_bot.generate_coupons)
+        procs.append(prc)
+        prc.start()
+        
     # send coupons
     prc = Process(target=vk_bot.send_coupons)
+    procs.append(prc)
     prc.start()
 
+    for prc in procs:
+        prc.join()
 
 
 
