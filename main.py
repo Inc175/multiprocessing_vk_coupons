@@ -37,7 +37,7 @@ class VKbot:
         self.q.put(coupon_path)
     
     def generate_coupons(self):
-        for i in range(5):
+        while True:
             qr_code_path = self.generate_one_qr_code_image("www.google.com")
             coupon_path = self.generate_one_coupon_image(qr_code_path)
             self.add_one_coupon_to_queue(coupon_path)
@@ -52,7 +52,7 @@ class VKbot:
         vk_session_2 = vk_api.VkApi(token='token')
         vk = vk_session_2.get_api()
 
-        for i in range(10):
+        while True:
             name = self.q.get()
 
             # uploading coupon image to group album
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     # run 2 processes for coupons generation
     for i in range(2):
-        prс = Process(target=vk_bot.generate_coupons)
+        prc = Process(target=vk_bot.generate_coupons)
         prc.start()
 
     # send coupons
